@@ -6,12 +6,19 @@
   "author": "Brendan, David, Jake, Smita",
   "license": "MIT",
   "scripts": {
+    "precommit": "yarn lint && yarn test",
+    "test": "jest --coverage",
+    "lint": "eslint db --ext .js; eslint rest-server --ext .js",
     "start": "nodemon src/index"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
-    "mysql": "^2.15.0"
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "mysql": "^2.15.0",
+    "sequelize": "^4.26.0"
   },
   "devDependencies": {
     "eslint": "^4.9.0",
