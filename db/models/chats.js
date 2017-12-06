@@ -5,8 +5,8 @@ const Chats = sequelize.define('chats', {
   link: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
-  }
+    unique: true,
+  },
 });
 
 Chats.sync();

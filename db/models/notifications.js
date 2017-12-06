@@ -2,15 +2,15 @@ const sequelize = require('../index');
 const Sequelize = require('sequelize');
 
 const Notifications = sequelize.define('notifications', {
-  notificationid {
+  NotificationID: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   type: {
     type: Sequelize.STRING,
-    allowNull: false
-  }
+    allowNull: false,
+  },
 });
 
-Chats.sync();
-module.exports = Chats;
+Notifications.sync();
+module.exports = Notifications;

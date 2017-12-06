@@ -4,44 +4,44 @@ const Sequelize = require('sequelize');
 const Users = sequelize.define('users', {
   userid: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
+    unique: true,
   },
   position: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   availability: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   description: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   location: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   imageurl: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   title: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
 });
 
