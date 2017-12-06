@@ -6,7 +6,7 @@
   "author": "Brendan, David, Jake, Smita",
   "license": "MIT",
   "scripts": {
-    "precommit": "yarn lint && yarn test",
+    "precommit": "eslint db --ext .js && eslint rest-server --ext .js && jest --coverage",
     "test": "jest --coverage",
     "lint": "eslint db --ext .js; eslint rest-server --ext .js",
     "start": "nodemon src/index"
