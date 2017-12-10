@@ -1,38 +1,31 @@
-const sequelize = require('../index');
-const Sequelize = require('sequelize');
+module.exports = (Sequelize, DataTypes) => {
+  const Positions = Sequelize.define('positions', {
+    user: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    requirements: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    project: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    availability: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  });
 
-/* ------------- POSITIONS TABLE ------------------ */
-const Positions = sequelize.define('positions', {
-  PositionID: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  User: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    unique: true,
-  },
-  Title: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  Requirements: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  Description: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  Project: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  Availability: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-});
-
-Positions.sync();
-module.exports = Positions;
+  return Positions;
+};
