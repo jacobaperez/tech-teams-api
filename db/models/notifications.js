@@ -1,16 +1,15 @@
-const sequelize = require('../index');
-const Sequelize = require('sequelize');
+module.exports = (Sequelize, DataTypes) => {
+  const Notifications = Sequelize.define('notifications', {
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  });
 
-const Notifications = sequelize.define('notifications', {
-  NotificationID: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  type: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-});
+  Notifications.associate = models => {
+    Notifications.hasMany(models.users);
+    Notifications.hasMany(models.projects);
+  };
 
-Notifications.sync();
-module.exports = Notifications;
+  return Notifications;
+};

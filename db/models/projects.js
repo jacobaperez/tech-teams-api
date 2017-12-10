@@ -1,36 +1,34 @@
-const sequelize = require('../index');
-const Sequelize = require('sequelize');
+module.exports = (Sequelize, DataTypes) => {
+  const Projects = Sequelize.define('projects', {
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    headquarters: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    imageurl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    techstack: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    websites: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  });
 
-const Projects = sequelize.define('projects', {
-  projectid: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  description: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  headquarters: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  imageurl: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  techstack: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  websites: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  status: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-});
+  Projects.associate = models => {
+    Projects.belongsToMany(models.users, { through: 'ProjectsUsers' });
+  };
 
-Projects.sync();
-module.exports = Projects;
+  return Projects;
+};
