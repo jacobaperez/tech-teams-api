@@ -1,49 +1,48 @@
-const sequelize = require('../index');
-const Sequelize = require('sequelize');
+module.exports = (Sequelize, DataTypes) => {
+  const Users = Sequelize.define('users', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    position: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    availability: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    imageurl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  });
 
-const Users = sequelize.define('users', {
-  userid: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  position: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  availability: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  description: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  location: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  imageurl: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-});
+  Users.associate = models => {
+    Users.belongsToMany(models.projects, { through: 'ProjectsUsers' });
+    Users.belongsToMany(models.chats, { through: 'ChatsUsers' });
+  };
 
-Users.sync();
-module.exports = Users;
+  return Users;
+};
