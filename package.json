@@ -9,7 +9,7 @@
     "precommit": "eslint db --ext .js && eslint rest-server --ext .js && jest --coverage",
     "test": "jest --coverage",
     "lint": "eslint db --ext .js; eslint rest-server --ext .js",
-    "start": "nodemon src/index"
+    "start": "nodemon rest-server/index"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
