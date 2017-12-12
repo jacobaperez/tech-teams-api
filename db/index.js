@@ -2,9 +2,10 @@ const Sequelize = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-const sequelize = new Sequelize('TechTeams', 'root', '', {
+const sequelize = new Sequelize('techteams', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
+  dialectOptions: { multipleStatements: true },
 });
 
 const db = {};
