@@ -1,10 +1,19 @@
 const Sequelize = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const rds = require('./rds.js');
 
-const sequelize = new Sequelize('techteams', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql',
+const sequelize = new Sequelize('techteams', rds.username, rds.password, {
+   host: rds.link,
+   port: 3306,
+   logging: console.log,
+   maxConcurrentQueries: 100,
+   dialect: 'mysql',
+   dialectOptions: {
+       ssl:'Amazon RDS'
+   },
+   pool: { maxConnections: 10, maxIdleTime: 15},
+   language: 'en',
   dialectOptions: { multipleStatements: true },
 });
 

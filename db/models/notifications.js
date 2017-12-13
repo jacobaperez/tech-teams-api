@@ -3,6 +3,9 @@ module.exports = (Sequelize, DataTypes) => {
     type: {
       type: DataTypes.STRING,
     },
+    user: {
+      type: DataTypes.INTEGER,
+    }
   });
 
   Notifications.associate = models => {
