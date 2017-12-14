@@ -18,6 +18,9 @@ module.exports = {
         user: userId,
       }
       db.notifications.create(notification);
+        .catch(err => {
+          throw err;
+        });
     }
   }
 }
