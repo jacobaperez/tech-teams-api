@@ -17,7 +17,8 @@ module.exports = {
         type: req.body.type,
         user: userId,
       }
-      db.notifications.create(notification);
+
+      db.notifications.create(notification)
         .catch(err => {
           throw err;
         });
