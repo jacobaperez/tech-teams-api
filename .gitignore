@@ -58,5 +58,8 @@ typings/
 .env
 env.js
 
+rest-server/firebase.config.js
+
+
 # RDS info
-rest-server/db/rds.js
+rest-server/src/db/rds.js

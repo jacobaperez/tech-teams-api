@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const search = require('../controllers/search.js');
-const createProject = require('../controllers/createproject.js');
-const notification = require('../controllers/notification.js');
-const profile = require('../controllers/profile.js');
-const signup = require('../controllers/signup.js');
+const search = require('../db/controllers/search.js');
+const createProject = require('../db/controllers/createproject.js');
+const notification = require('../db/controllers/notification.js');
+const profile = require('../db/controllers/profile.js');
+const signup = require('../db/controllers/signup.js');
+
 
 router.route('/projectsearch')
   .post(search.projectSearch);
@@ -23,7 +24,11 @@ router.route('/profile')
 router.route('/updateprofile')
   .post(profile.update);
 
-router.route('signup')
+router.route('/signup')
   .post(signup.post);
+
+router.route('/login')
+  .post();
+  // add authUser
 
 module.exports = router;
