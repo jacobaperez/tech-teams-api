@@ -1,6 +1,9 @@
 module.exports = (Sequelize, DataTypes) => {
   const Positions = Sequelize.define('positions', {
     user: {
+      type: DataTypes.STRING,
+    },
+    project: {
       type: DataTypes.INTEGER,
     },
     title: {

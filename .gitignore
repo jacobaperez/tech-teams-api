@@ -59,4 +59,4 @@ typings/
 env.js
 
 # RDS info
-db/rds.js
+rest-server/db/rds.js
