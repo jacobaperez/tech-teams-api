@@ -1,13 +1,12 @@
 import jwt from 'jsonwebtoken';
 
 
-export const generateToken = ({ name, email }) => {
+export const generateToken = ({ email }) => {
   const token = {};
 
   token.accessToken = jwt.sign({
     exp: Math.floor(Date.now() / 1000) + (60 * 60),
-    username,
-    email,
+    email: email,
   }, process.env.TOKEN_SECRET);
 
   return token;

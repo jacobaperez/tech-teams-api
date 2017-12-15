@@ -8,11 +8,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const router = require('./routes/routes');
 
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({
+  allowedHeaders: 'Content-Type,Authorization',
+  methods: ['GET, POST, PUT, DELETE, OPTIONS'],
+}));
 app.use('/', router);
 
-app.listen(3000, () => {
-  console.log('LISTENING AT PORT 3000');
+
+
+app.listen(process.env.API_PORT, () => {
+  console.log('LISTENING AT PORT:', process.env.API_PORT);
 });

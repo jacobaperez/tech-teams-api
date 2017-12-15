@@ -5,6 +5,8 @@ const notification = require('../db/controllers/notification.js');
 const profile = require('../db/controllers/profile.js');
 const signup = require('../db/controllers/signup.js');
 
+import { authUser } from '../controllers/user';
+
 
 router.route('/projectsearch')
   .post(search.projectSearch);
@@ -28,7 +30,7 @@ router.route('/signup')
   .post(signup.post);
 
 router.route('/login')
-  .post();
+  .post(authUser);
   // add authUser
 
 module.exports = router;
