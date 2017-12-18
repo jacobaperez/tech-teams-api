@@ -21,11 +21,13 @@ module.exports = (Sequelize, DataTypes) => {
     status: {
       type: DataTypes.STRING,
     },
+    user: {
+      type: DataTypes.STRING,
+    }
   });
 
   Projects.associate = models => {
     Projects.belongsToMany(models.users, { through: 'projectsusers' });
-    Projects.belongsToMany(models.positions, { through: 'positionsprojects' })
   };
 
   return Projects;
