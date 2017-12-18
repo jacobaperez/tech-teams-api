@@ -12,12 +12,12 @@ module.exports = {
 
     let userId;
 
-    db.users.findOne(email)
+    db.users.findOne( { where: { email: email } })
       .then(body => {
         userId = body.id})
       .catch(err => {
         throw err;
-      })
+      });
 
     db.projectsusers.findAll({ where: { userId: userId } })
       .then(projs => {

@@ -4,7 +4,7 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     project: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     title: {
       type: DataTypes.STRING,
@@ -19,10 +19,6 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   });
-
-  Positions.associate = models => {
-    Positions.belongsToMany(models.projects, { through: 'positionsprojects' })
-  };
 
   return Positions;
 
