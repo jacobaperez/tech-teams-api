@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const search = require('../db/controllers/search.js');
-const createProject = require('../db/controllers/createproject.js');
+const project = require('../db/controllers/project.js');
 const notification = require('../db/controllers/notification.js');
 const profile = require('../db/controllers/profile.js');
 const signup = require('../db/controllers/signup.js');
@@ -15,10 +15,13 @@ router.route('/usersearch')
   .post(search.userSearch);
 
 router.route('/createproject')
-  .post(createProject.createProject.post);
+  .post(project.createProject);
+
+router.route('/updateproject')
+  .post(project.updateProject);
 
 router.route('/notification')
-  .post(notification.notifications.post);
+  .post(notification.post);
 
 router.route('/profile')
   .get(profile.get);
