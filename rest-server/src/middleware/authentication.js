@@ -6,7 +6,7 @@ export const generateToken = ({ email }) => {
 
   token.accessToken = jwt.sign({
     exp: Math.floor(Date.now() / 1000) + (60 * 60),
-    email: email,
+    email,
   }, process.env.TOKEN_SECRET);
 
   return token;

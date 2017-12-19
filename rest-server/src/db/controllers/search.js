@@ -13,10 +13,11 @@ module.exports = {
     union
     select 100 as relevance, * FROM projects
     WHERE name LIKE '%${query}%')
-    order by relevance asc`, { type: db.QueryTypes.SELECT})
-      .then(body => {
-        res.send(body)})
-      .catch(err => {
+    order by relevance asc`, { type: db.QueryTypes.SELECT })
+      .then((body) => {
+        res.send(body);
+      })
+      .catch((err) => {
         throw err;
       });
   },
@@ -33,11 +34,12 @@ module.exports = {
     union
     select 100 as relevance, * FROM users
     WHERE title LIKE '%${query}%')
-    order by relevance asc`, { type: db.QueryTypes.SELECT})
-      .then(body => {
-        res.send(body)})
-      .catch(err => {
+    order by relevance asc`, { type: db.QueryTypes.SELECT })
+      .then((body) => {
+        res.send(body);
+      })
+      .catch((err) => {
         throw err;
       });
-  }
+  },
 };

@@ -12,7 +12,7 @@ module.exports = {
     };
 
     db.positions.create(position)
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
   },
@@ -36,5 +36,5 @@ module.exports = {
       .catch(err => {
         throw err;
       });
-  }
-}
+  },
+};

@@ -26,7 +26,7 @@ module.exports = (Sequelize, DataTypes) => {
     }
   });
 
-  Projects.associate = models => {
+  Projects.associate = (models) => {
     Projects.belongsToMany(models.users, { through: 'projectsusers' });
   };
 
