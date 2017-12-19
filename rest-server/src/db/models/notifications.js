@@ -5,10 +5,10 @@ module.exports = (Sequelize, DataTypes) => {
     },
     user: {
       type: DataTypes.INTEGER,
-    }
+    },
   });
 
-  Notifications.associate = models => {
+  Notifications.associate = (models) => {
     Notifications.hasMany(models.users);
     Notifications.hasMany(models.projects);
   };
