@@ -34,6 +34,6 @@ router.route('/signup')
 
 router.route('/login')
   .post(authUser);
-  // add authUser
+// add authUser
 
 module.exports = router;

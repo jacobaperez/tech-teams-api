@@ -5,7 +5,7 @@ module.exports = (Sequelize, DataTypes) => {
     },
   });
 
-  Chats.associate = models => {
+  Chats.associate = (models) => {
     Chats.belongsToMany(models.users, { through: 'chatsusers' });
   };
 
