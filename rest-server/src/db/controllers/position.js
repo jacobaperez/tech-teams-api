@@ -12,7 +12,7 @@ module.exports = {
     };
 
     db.positions.create(position)
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
   },
@@ -28,8 +28,8 @@ module.exports = {
     };
 
     db.positions.update(position)
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
-  }
-}
+  },
+};

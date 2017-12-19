@@ -16,23 +16,26 @@ module.exports = {
       const email = req.body.email;
       let userId;
 
-      db.users.findOne({ where: {email: email} })
-        .then(body => {
-          userId = body.id})
-        .catch(err => {
-          throw err;
+      db.users.findOne({ where: { email } })
+        .then((body) => {
+          userId = body.id;
         })
-
-      db.projects.create(project)
-        .then(body => {
-          const projUser = {
-            projectId: body.dataValues.id,
-            userId: userId,
-          };
-      db.projectsusers.create(projUser);
-        res.send(body)})
-        .catch(err => {
+        .catch((err) => {
           throw err;
         });
-  }
-}
+
+      db.projects.create(project)
+        .then((body) => {
+          const projUser = {
+            projectId: body.dataValues.id,
+            userId,
+          };
+          db.projectsusers.create(projUser);
+          res.send(body);
+        })
+        .catch((err) => {
+          throw err;
+        });
+    },
+  },
+};

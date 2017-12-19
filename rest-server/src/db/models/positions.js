@@ -20,10 +20,9 @@ module.exports = (Sequelize, DataTypes) => {
     },
   });
 
-  Positions.associate = models => {
-    Positions.belongsToMany(models.projects, { through: 'positionsprojects' })
+  Positions.associate = (models) => {
+    Positions.belongsToMany(models.projects, { through: 'positionsprojects' });
   };
 
   return Positions;
-
 };

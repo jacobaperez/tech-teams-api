@@ -14,8 +14,8 @@ module.exports = {
     };
 
     db.users.create(user)
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
-  }
-}
+  },
+};
