@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const rds = require('../../db/rds.js');
+const rds = require('./rds.js');
 
 const sequelize = new Sequelize('techteams', rds.username, rds.password, {
   host: rds.link,
