@@ -2,7 +2,6 @@ const db = require('../index.js');
 
 module.exports = {
   post: (req, res) => {
-    console.log('this is the req.body= ', req.body)
     const user = {
       name: req.body.name,
       email: req.body.email,

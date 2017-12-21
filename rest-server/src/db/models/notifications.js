@@ -3,15 +3,13 @@ module.exports = (Sequelize, DataTypes) => {
     type: {
       type: DataTypes.STRING,
     },
-    user: {
-      type: DataTypes.INTEGER,
+    sender: {
+      type: DataTypes.STRING,
     },
+    recipient: {
+      type: DataTypes.STRING,
+    }
   });
-
-  Notifications.associate = (models) => {
-    Notifications.hasMany(models.users);
-    Notifications.hasMany(models.projects);
-  };
 
   return Notifications;
 };
