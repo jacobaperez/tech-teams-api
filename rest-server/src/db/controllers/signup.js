@@ -11,6 +11,7 @@ module.exports = {
       location: req.body.location,
       imageurl: req.body.imageurl,
       title: req.body.title,
+      tech: req.body.tech,
     };
 
     db.users.create(user)

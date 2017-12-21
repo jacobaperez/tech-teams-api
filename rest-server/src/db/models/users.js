@@ -24,6 +24,9 @@ module.exports = (Sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
     },
+    tech: {
+      type: DataTypes.STRING,
+    },
   });
 
   Users.associate = (models) => {

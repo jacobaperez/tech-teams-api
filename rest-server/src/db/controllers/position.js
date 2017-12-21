@@ -12,6 +12,9 @@ module.exports = {
     };
 
     db.positions.create(position)
+      .then(data => {
+        res.send(data);
+      })
       .catch((err) => {
         throw err;
       });
