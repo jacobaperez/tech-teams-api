@@ -10,6 +10,9 @@ module.exports = {
     }
 
     db.notifications.create(notification)
+      .then(data => {
+        res.send(data);
+      })
       .catch(err => {
         throw err;
       });

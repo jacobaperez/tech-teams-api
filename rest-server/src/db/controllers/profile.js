@@ -35,9 +35,13 @@ module.exports = {
       location: req.body.location,
       imageurl: req.body.imageurl,
       title: req.body.title,
+      tech: req.body.tech,
     };
 
     db.users.update(updatedUser, { where: { email: email } })
+      .then(data => {
+        res.send(data)
+      })
       .catch((err) => {
         throw err;
       });

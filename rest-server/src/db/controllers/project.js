@@ -22,23 +22,6 @@ module.exports = {
   },
 
   updateProject: (req, res) => {
-    const email = req.body.email;
-    db.users.findOne({ where: { email: email } })
-      .then(info => {
-        res.send(info)})
-      .catch(err => {
-        throw err;
-      });
-
-    let userId;
-
-    db.users.findOne({ where: { email: email } })
-      .then(body => {
-        userId = body.id})
-      .catch(err => {
-        throw err;
-      });
-
     const project = {
       name: req.body.name,
       headquarters: req.body.headquarters,
@@ -47,11 +30,24 @@ module.exports = {
       techstack: req.body.techstack,
       websites: req.body.websites,
       status: req.body.status,
+      user: req.body.user,
     };
 
     db.projects.update(project, { where: { name: name } })
       .catch(err => {
         throw err;
       });
+  }
+
+  getProject: (req, res) => {
+    const name = req.body.name;
+
+    db.projects.findOne({ where: { name: name} })
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        throw err;
+      })
   }
 }
