@@ -10,26 +10,12 @@ module.exports = {
       techstack: req.body.techstack,
       websites: req.body.websites,
       status: 'active',
+      user: req.body.user,
     };
-
-    const email = req.body.email;
-    let userId;
-
-    db.users.findOne({ where: {email: email} })
-      .then(body => {
-        userId = body.id})
-      .catch(err => {
-        throw err;
-      })
 
     db.projects.create(project)
       .then(body => {
-        const projUser = {
-          projectId: body.dataValues.id,
-          userId: userId,
-        };
-    db.projectsusers.create(projUser);
-      res.send(body)})
+        res.send(body)})
       .catch(err => {
         throw err;
       });

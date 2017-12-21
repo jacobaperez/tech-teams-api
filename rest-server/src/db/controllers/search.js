@@ -2,43 +2,36 @@ const db = require('../index.js');
 
 module.exports = {
   projectSearch: (req, res) => {
-    const query = req.body.query;
+    const query = req.body.query.toLowerCase().replace(/\s/g, '');
 
-    db.query(`select * from (
-    SELECT 1 as relevance, * FROM projects
-    WHERE name LIKE '%${query}%'
-    union
-    select 10 as relevance, * FROM projects
-    WHERE name LIKE '%${query}%'
-    union
-    select 100 as relevance, * FROM projects
-    WHERE name LIKE '%${query}%')
-    order by relevance asc`, { type: db.QueryTypes.SELECT })
-      .then((body) => {
+    db.projects.findAll({
+      where: {
+        $or: [
+      { 'name': { like: '%' + query + '%' } },
+      { 'headquarters': { like: '%' + query + '%' } },
+      { 'description': { like: '%' + query + '%' } },
+      { 'techstack': { like: '%' + query + '%' } },
+      { 'user': { like: '%' + query + '%' } }]}})
+      .then(body => {
         res.send(body);
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   },
 
   userSearch: (req, res) => {
-    const query = req.body.query;
+    const query = req.body.query.toLowerCase().replace(/\s/g, '');
 
-    db.query(`select * from (
-    SELECT 1 as relevance, * FROM users
-    WHERE title LIKE '%${query}%'
-    union
-    select 10 as relevance, * FROM users
-    WHERE title LIKE '%${query}%'
-    union
-    select 100 as relevance, * FROM users
-    WHERE title LIKE '%${query}%')
-    order by relevance asc`, { type: db.QueryTypes.SELECT })
-      .then((body) => {
+    db.users.findAll({
+      where: {
+        $or: [
+      { 'title': { like: '%' + query + '%' } },
+      { 'position': { like: '%' + query + '%' } }]}})
+      .then(body => {
         res.send(body);
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   },
