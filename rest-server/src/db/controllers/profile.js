@@ -1,47 +1,49 @@
 const db = require('../index.js');
+import jwtDecode from 'jwt-decode';
 
 module.exports = {
   get: (req, res) => {
-    const email = req.body.email;
-    db.users.findOne({ where: { email } })
-      .then((info) => {
-        res.send(info);
-      })
-      .catch((err) => {
-        throw err;
-      });
+    // console.log('IN QUERY:', jwtDecode(req.headers.authorization).email);
+    const email = jwtDecode(req.headers.authorization).email;
+    // db.users.findOne({ where: { email: email } })
+    //   .then((info) => {
+    //     console.log('ALL OF A USERS INFO', info);
+    //     res.send(info);
+    //     res.send('fucccc')
+    //   })
+    //   .catch((err) => {
+    //     throw err;
+    //   });
 
-    let userId;
+    // let userId;
+    const azz = {}
 
-    db.users.findOne( { where: { email: email } })
+    db.users.findOne({ where: { email: email },
+    include: [{ model: db.projects } ]})
       .then(body => {
-        userId = body.id})
+        let userId = body.id
+        console.log(body)
+        azz['body'] = body
+        // db.users.findAll({ where: { userId: userId }, include: { model: db.sequelize.Sequelize.models.projectsusers } })
+        // .then(projs => {
+        //   res.send(projs)
+          res.send(azz);
+            // db.notifications.findAll({ where: { user: email } })
+            // .then((notes) => {
+            //   azz.notes = notes
+            //   res.send(azz)
+            // })
+            // .catch((err) => {
+            //   throw err;
+            // })
+        // })
+        // .catch(err => {
+        //   throw err;
+      //   })
+      })
       .catch(err => {
         throw err;
-      });
-
-    db.projectsusers.findAll({ where: { userId: userId } })
-      .then(projs => {
-        res.send(projs)})
-      .catch(err => {
-        throw err;
-      });
-
-    db.projectsusers.findAll({ where: { userId } })
-      .then((projs) => {
-        res.send(projs);
       })
-      .catch((err) => {
-        throw err;
-      });
-
-    db.notifications.findAll({ where: { userId } })
-      .then((notes) => {
-        res.send(notes);
-      })
-      .catch((err) => {
-        throw err;
-      });
   },
 
   update: (req, res) => {
@@ -56,7 +58,7 @@ module.exports = {
       title: req.body.title,
     };
 
-    db.users.update(updatedUser, { where: { email } })
+    db.users.update(updatedUser, { where: { email: email } })
       .catch((err) => {
         throw err;
       });

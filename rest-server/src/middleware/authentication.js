@@ -14,7 +14,9 @@ export const generateToken = ({ email }) => {
 
 export const verifyUserWithJWT = (req, res, next) => {
   try {
-    jwt.verify(req.headers.authorization.slice(7), process.env.TOKEN_SECRET);
+    console.log('MIDDLEWARE BODY:', req.body);
+    console.log('TOKEN ON SERVER SIDE: ', req.headers.authorization, ' HEADERS=', req.headers);
+    jwt.verify(req.headers.authorization, process.env.TOKEN_SECRET);
     console.log('token verified');
     next();
   } catch (e) {

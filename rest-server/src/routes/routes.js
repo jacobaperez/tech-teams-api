@@ -6,7 +6,7 @@ const profile = require('../db/controllers/profile.js');
 const signup = require('../db/controllers/signup.js');
 
 import { authUser } from '../controllers/user';
-
+import {verifyUserWithJWT} from '../middleware/authentication';
 
 router.route('/projectsearch')
   .post(search.projectSearch);
@@ -24,7 +24,7 @@ router.route('/notification')
   .post(notification.post);
 
 router.route('/profile')
-  .get(profile.get);
+  .get(verifyUserWithJWT, profile.get);
 
 router.route('/updateprofile')
   .post(profile.update);
