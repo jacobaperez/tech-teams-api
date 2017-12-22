@@ -20,8 +20,11 @@ router.route('/createproject')
 router.route('/updateproject')
   .post(project.updateProject);
 
-router.route('/notification')
-  .post(notification.post);
+router.route('/createnote')
+  .post(notification.createNotification);
+
+router.route('/updatenote')
+  .post(notification.updateNotification);
 
 router.route('/profile')
   .get(verifyUserWithJWT, profile.get);
