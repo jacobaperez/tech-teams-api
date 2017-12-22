@@ -7,14 +7,17 @@ module.exports = {
 
     const data = {};
 
-    db.users.findOne({ where: { email: email },
-    include: [{ model: db.projects } ]})
+    db.users.findOne({ where: { email: email } })
       .then(info => {
         data.info = info;
         db.notifications.findAll({ where: { recipient: email } })
         .then(notifications => {
           data.notifications = notifications;
-          res.send(data);
+          db.positions.findAll({ where: { user: email } })
+          .then(positions => {
+            data.positions = positions;
+            res.send(data);
+          })
         })
         .catch(err => {
           throw err;

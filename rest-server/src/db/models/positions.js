@@ -18,6 +18,9 @@ module.exports = (Sequelize, DataTypes) => {
     availability: {
       type: DataTypes.STRING,
     },
+    projectdescription: {
+      type: DataTypes.STRING,
+    }
   });
 
   return Positions;

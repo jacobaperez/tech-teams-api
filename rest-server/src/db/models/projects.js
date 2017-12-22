@@ -26,10 +26,5 @@ module.exports = (Sequelize, DataTypes) => {
     }
   });
 
-  Projects.associate = (models) => {
-    Projects.belongsToMany(models.users, { through: 'projectsusers' });
-    Projects.belongsToMany(models.positions, { through: 'positionsprojects' });
-  };
-
   return Projects;
 };
