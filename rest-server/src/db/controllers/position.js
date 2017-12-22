@@ -22,17 +22,22 @@ module.exports = {
 
   updatePosition: (req, res) => {
     const position = {
-      user: req.body.user,
       requirements: req.body.requirements,
       description: req.body.description,
       availability: req.body.availability,
     };
 
+    db.users.findOne({ where: { email: req.body.user } })
+      .then(data => {
+        position.user = data.name;
+        position.imageurl = data.imageurl;
+      })
+
     db.positions.update(position, { where: { project: req.body.project, title: req.body.title } })
       .catch(err => {
         throw err;
       });
-  }
+  },
 
   deletePosition: (req, res) => {
     db.positions.destroy({ where: { project: req.body.project, title: req.body.title, description: req.body.description } })
