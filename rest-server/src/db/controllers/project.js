@@ -23,7 +23,6 @@ module.exports = {
 
   updateProject: (req, res) => {
     const project = {
-      name: req.body.name,
       headquarters: req.body.headquarters,
       description: req.body.description,
       imageurl: req.body.imageurl,
@@ -33,7 +32,7 @@ module.exports = {
       user: req.body.user,
     };
 
-    db.projects.update(project, { where: { name: name } })
+    db.projects.update(project, { where: { name: req.body.name } })
       .catch(err => {
         throw err;
       });

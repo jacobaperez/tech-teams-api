@@ -11,6 +11,9 @@ module.exports = (Sequelize, DataTypes) => {
     },
     position: {
       type: DataTypes.STRING,
+    },
+    status: {
+      type: DataTypes.STRING,
     }
   });
 
