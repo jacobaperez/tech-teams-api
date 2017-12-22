@@ -8,6 +8,9 @@ module.exports = (Sequelize, DataTypes) => {
     },
     recipient: {
       type: DataTypes.STRING,
+    },
+    position: {
+      type: DataTypes.STRING,
     }
   });
 
