@@ -41,10 +41,19 @@ module.exports = {
 
   getProject: (req, res) => {
     const name = req.body.name;
+    const data = {};
 
     db.projects.findOne({ where: { name: name} })
-      .then(data => {
-        res.send(data);
+      .then(pinfo => {
+        data.pinfo = pinfo;
+        db.positions.findAll({ where: { project: name} })
+          .then(positions => {
+            data.positions = positions;
+            res.send(data);
+          })
+          .catch(err => {
+            throw err;
+          })
       })
       .catch(err => {
         throw err;
