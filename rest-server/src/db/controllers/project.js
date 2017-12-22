@@ -13,9 +13,16 @@ module.exports = {
       user: req.body.user,
     };
 
+    const projectuser = {
+      user: req.body.user,
+      project: req.body.name,
+      projectdescription: req.body.description,
+    }
+
     db.projects.create(project)
       .then(body => {
-        res.status(200).send(body)
+        db.positions.create(projectuser);
+        res.status(200).send(body);
       })
       .catch(err => {
         throw err;
