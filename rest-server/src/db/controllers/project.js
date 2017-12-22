@@ -37,7 +37,7 @@ module.exports = {
       .catch(err => {
         throw err;
       });
-  }
+  },
 
   getProject: (req, res) => {
     const name = req.body.name;

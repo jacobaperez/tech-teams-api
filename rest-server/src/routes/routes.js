@@ -36,7 +36,7 @@ router.route('/login')
   .post(authUser);
 
 router.route('/getproject')
-  .get(project.getProject);
+  .post(project.getProject);
 // add authUser
 
 module.exports = router;
