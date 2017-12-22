@@ -36,7 +36,7 @@ module.exports = {
       sender: req.body.sender,
       recipient: req.body.recipient,
       position: req.body.position,
-      status: req.body.status,
+      status: 'inactive',
     }
 
     db.notifications.update(notification,
@@ -45,6 +45,7 @@ module.exports = {
         sender: req.body.sender,
         recipient: req.body.recipient,
         position: req.body.position,
+        status: 'active'
       }})
       .then(body => {
         res.send(body);
