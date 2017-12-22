@@ -10,13 +10,24 @@ module.exports = {
       status: 'active',
     }
 
-    db.notifications.create(notification)
-      .then(data => {
-        res.send(data);
+
+    db.users.findOne({ where: { email: notification.recipient }})
+      .then(info => {
+        if(info) {
+          db.notifications.create(notification)
+            .then(data => {
+              res.status(200).send(data);
+            })
+            .catch(err => {
+              throw err;
+            });
+        } else {
+          res.status(204).send(null);
+        }
       })
       .catch(err => {
         throw err;
-      });
+      })
   },
 
   updateNotification: (req, res) => {

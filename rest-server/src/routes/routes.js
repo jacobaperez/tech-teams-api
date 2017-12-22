@@ -15,7 +15,7 @@ router.route('/usersearch')
   .post(search.userSearch);
 
 router.route('/createproject')
-  .post(project.createProject);
+  .post(verifyUserWithJWT, project.createProject);
 
 router.route('/updateproject')
   .post(project.updateProject);

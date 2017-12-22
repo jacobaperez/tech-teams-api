@@ -15,7 +15,8 @@ module.exports = {
 
     db.projects.create(project)
       .then(body => {
-        res.send(body)})
+        res.status(200).send(body)
+      })
       .catch(err => {
         throw err;
       });
