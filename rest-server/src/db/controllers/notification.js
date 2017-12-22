@@ -7,6 +7,7 @@ module.exports = {
       sender: req.body.sender,
       recipient: req.body.recipient,
       position: req.body.position,
+      project: req.body.project,
       status: 'active',
     }
 
@@ -39,6 +40,8 @@ module.exports = {
       status: 'inactive',
     }
 
+    const response = req.body.response;
+
     db.notifications.update(notification,
       { where: {
         type: req.body.type,
@@ -48,6 +51,13 @@ module.exports = {
         status: 'active'
       }})
       .then(body => {
+        if (response) {
+          db.positions.create({
+            user: req.body.recipient,
+            project: req.body.project,
+            title: req.body.position,
+          });
+        }
         res.send(body);
       })
       .catch(err => {
