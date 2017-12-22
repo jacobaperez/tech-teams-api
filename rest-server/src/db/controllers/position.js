@@ -3,13 +3,18 @@ const db = require('../index.js');
 module.exports = {
   addPosition: (req, res) => {
     const position = {
-      user: req.body.user,
       project: req.body.project,
       title: req.body.title,
       requirements: req.body.requirements,
       description: req.body.description,
       availability: req.body.availability,
     };
+
+    db.users.findOne({ where: { email: req.body.user } })
+      .then(data => {
+        position.user = data.name;
+        position.imageurl = data.imageurl;
+      })
 
     db.positions.create(position)
       .then(data => {
