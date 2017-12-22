@@ -11,7 +11,7 @@ module.exports = {
     include: [{ model: db.projects } ]})
       .then(info => {
         data.info = info;
-        db.notifications.findAll({ where: { user: email } })
+        db.notifications.findAll({ where: { recipient: email } })
         .then(notifications => {
           data.notifications = notifications;
           res.send(data);

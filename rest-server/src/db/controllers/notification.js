@@ -2,11 +2,12 @@ const db = require('../index.js');
 
 module.exports = {
   post: (req, res) => {
-    const email = req.body.email;
 
     const notification = {
       type: req.body.type,
-      user: email,
+      sender: req.body.sender,
+      recipient: req.body.recipient,
+      position: req.body.position,
     }
 
     db.notifications.create(notification)
