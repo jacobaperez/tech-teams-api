@@ -4,6 +4,7 @@ const project = require('../db/controllers/project.js');
 const notification = require('../db/controllers/notification.js');
 const profile = require('../db/controllers/profile.js');
 const signup = require('../db/controllers/signup.js');
+const position = require('../db/controllers/position.js');
 
 import { authUser } from '../controllers/user';
 import {verifyUserWithJWT} from '../middleware/authentication';
@@ -40,6 +41,15 @@ router.route('/login')
 
 router.route('/getproject')
   .post(project.getProject);
+
+router.route('/addposition')
+  .post(position.addPosition);
+
+router.route('/updateposition')
+  .post(position.updatePosition);
+
+router.route('/deleteposition')
+  .post(position.deletePosition);
 // add authUser
 
 module.exports = router;
